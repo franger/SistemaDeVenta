@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.DependencyInjection;
 using SistemaDeVenta.Data;
+using SistemaDeVenta.Data.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddDbContext<MyDbContext>();
+builder.Services.AddScoped<IMyDbContext,MyDbContext>();
+
 
 var app = builder.Build();
 
